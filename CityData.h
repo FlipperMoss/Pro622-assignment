@@ -12,6 +12,7 @@ class CityData
 private:
     vector<double> dailySensorReadings;
     list<string> historicalLogs;
+    // A linked list is suitable for historical logs because the logs can continue growing dynamucally. The container does not require us to specify a fixed maximum number of logs.
 
 public:
     // Constructor

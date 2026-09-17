@@ -11,12 +11,15 @@ CityData::CityData()
 // Sensor and historical logs and readings
 void CityData::addSensorReading(double reading)
 {
+    // We use this as a vector is suitable because sensor readings can be stored sequentually and accessed direclty using an index
+    // So if we want the 100th reading we can accesss it directly rather than starting from the beginning.
     dailySensorReadings.push_back(reading);
 }
 
 void CityData::addCityLog(string log)
 {
     historicalLogs.push_back(log);
+    // This is efficient and for traversal, we simply go through each log.
 }
 
 // Display all readings
