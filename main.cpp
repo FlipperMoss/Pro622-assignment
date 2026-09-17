@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iostream>
 #include "Engineer.h"
+#include "CityData.h"
 
 using namespace std;
 
@@ -75,6 +76,21 @@ int main()
         cout << "\nLogin Failed!" << endl;
         cout << "Invalid username or password." << endl;
     }
+
+    // CityData Object
+    CityData cityData;
+    // samples
+    cityData.addSensorReading(75.6);
+    cityData.addSensorReading(43.5);
+    cityData.addSensorReading(93.1);
+    cityData.addSensorReading(23.9);
+
+    cityData.addCityLog("Power consumption increased during peak hours.");
+    cityData.addCityLog("Traffic congeestion detected in sector 4.");
+    cityData.addCityLog("Weather alert received from monitoring station.");
+
+    cityData.displaySensorReadings();
+    cityData.displayHistoricalLogs();
 
     return 0;
 }
