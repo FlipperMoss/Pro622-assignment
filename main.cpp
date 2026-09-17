@@ -85,11 +85,23 @@ int main()
     cityData.addSensorReading(93.1);
     cityData.addSensorReading(23.9);
 
+    cityData.displaySensorReadings();
+
+    // REMOVE SENSOR DATA
+    // index 1 represents the second element
+    cityData.removeSensorReading(1);
+    // Display the vecotr again
+    cityData.displaySensorReadings();
+
     cityData.addCityLog("Power consumption increased during peak hours.");
     cityData.addCityLog("Traffic congeestion detected in sector 4.");
     cityData.addCityLog("Weather alert received from monitoring station.");
 
-    cityData.displaySensorReadings();
+    cityData.displayHistoricalLogs();
+
+    // REMOVE OUTDATED DATA
+    cityData.removeOldestLog();
+
     cityData.displayHistoricalLogs();
 
     return 0;

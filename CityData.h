@@ -19,9 +19,11 @@ public:
     CityData();
 
     void addSensorReading(double reading);
+    void removeSensorReading(int index);
 
     // Add a new city log to the linked list
     void addCityLog(string log);
+    void removeOldestLog();
 
     // Display
     void displaySensorReadings() const;
