@@ -9,6 +9,7 @@
 #include "TransportSystem.h"
 #include "HealthSystem.h"
 #include "SecuritySystem.h"
+#include "AlgorithmManager.h"
 
 using namespace std;
 
@@ -228,6 +229,115 @@ int main()
     cout << "Security status: "
          << security.getStatus()
          << endl;
+
+    // QUESTION 5
+    cout << "\n======================================" << endl;
+    cout << "       STL ALGORITHMS" << endl;
+    cout << "======================================" << endl;
+
+    AlgorithmManager algorithms;
+
+    // Create some unsorted sensor readings.
+    vector<double> sensorReadings =
+        {
+            82.5,
+            45.7,
+            91.3,
+            63.2,
+            77.8,
+            52.4};
+
+    cout << "\nOriginal sensor readings:" << endl;
+
+    for (double reading : sensorReadings)
+    {
+        cout << reading << " ";
+    }
+
+    cout << endl;
+
+    // 1. SORT
+
+    algorithms.sortSensorData(sensorReadings);
+
+    cout << "Sorted sensor readings:" << endl;
+
+    for (double reading : sensorReadings)
+    {
+        cout << reading << " ";
+    }
+
+    cout << endl;
+
+    // 2. MIN_ELEMENT
+
+    double lowest =
+        algorithms.findLowestReading(sensorReadings);
+
+    cout << "\nLowest sensor reading: "
+         << lowest << endl;
+
+    // 3. MAX_ELEMENT
+
+    double highest =
+        algorithms.findHighestReading(sensorReadings);
+
+    cout << "Highest sensor reading: "
+         << highest << endl;
+
+    // EVENT SEARCH
+
+    // Create a list of city events.
+    vector<string> cityEvents =
+        {
+            "Traffic Accident",
+            "Power Failure",
+            "Network Overload",
+            "Weather Alert"};
+
+    // 4. FIND
+
+    string searchEvent = "Power Failure";
+
+    bool eventFound =
+        algorithms.findEvent(cityEvents, searchEvent);
+
+    if (eventFound)
+    {
+        cout << "\nEvent found: "
+             << searchEvent << endl;
+    }
+    else
+    {
+        cout << "\nEvent not found: "
+             << searchEvent << endl;
+    }
+
+    // CRITICAL ALERTS
+
+    // Alert levels:
+    // 1 = Low
+    // 2 = Medium
+    // 3 = High
+    // 4 = Critical
+
+    vector<int> alertLevels =
+        {
+            1,
+            3,
+            2,
+            4,
+            3,
+            1,
+            2};
+
+    // 5. COUNT_IF
+
+    int criticalAlerts =
+        algorithms.countCriticalAlerts(alertLevels);
+
+    cout << "\nNumber of critical/high alerts: "
+         << criticalAlerts << endl;
 
     return 0;
 }
