@@ -10,6 +10,8 @@
 #include "HealthSystem.h"
 #include "SecuritySystem.h"
 #include "AlgorithmManager.h"
+#include "ReportManager.h"
+#include "FileManager.h"
 
 using namespace std;
 
@@ -338,6 +340,116 @@ int main()
 
     cout << "\nNumber of critical/high alerts: "
          << criticalAlerts << endl;
+
+    // QUESTION 6
+    cout << "\n======================================"
+         << endl;
+
+    cout << "       SYSTEM REPORTS & ANALYTICS"
+         << endl;
+
+    cout << "======================================"
+         << endl;
+
+    ReportManager reports;
+
+    // Add sample response times in seconds.
+    reports.addResponseTime(4.5);
+    reports.addResponseTime(6.2);
+    reports.addResponseTime(3.8);
+    reports.addResponseTime(7.1);
+    reports.addResponseTime(5.4);
+
+    // Store the types of emergencies that occurred.
+    reports.addEmergencyType("Power Failure");
+    reports.addEmergencyType("Weather Alert");
+    reports.addEmergencyType("Power Failure");
+    reports.addEmergencyType("Network Overload");
+    reports.addEmergencyType("Power Failure");
+    reports.addEmergencyType("Weather Alert");
+
+    // Store system load measurements as percentages.
+    reports.addSystemLoad(65.5);
+    reports.addSystemLoad(72.3);
+    reports.addSystemLoad(81.7);
+    reports.addSystemLoad(59.4);
+    reports.addSystemLoad(76.2);
+
+    reports.generateReport();
+
+    // QUESTION 7
+
+    cout << "\n======================================"
+         << endl;
+
+    cout << "       FILE HANDLING & PERSISTENCE"
+         << endl;
+
+    cout << "======================================"
+         << endl;
+
+    // Save the engineers that were created for the
+    // authentication system.
+    FileManager::saveEngineers(enginneers);
+
+    // Load the engineers back from the file.
+    vector<Engineer> loadedEngineers =
+        FileManager::loadEngineers();
+
+    // Create a vector of events that can be persisted.
+    vector<Event> eventsToSave;
+
+    eventsToSave.push_back(
+        Event(
+            "Traffic Accident",
+            "Sector 1",
+            3));
+
+    eventsToSave.push_back(
+        Event(
+            "Power Failure",
+            "Sector 3",
+            5));
+
+    eventsToSave.push_back(
+        Event(
+            "Weather Alert",
+            "Sector 2",
+            4));
+
+    // Save events.
+    FileManager::saveEvents(eventsToSave);
+
+    // Load events back from the file.
+    vector<Event> loadedEvents =
+        FileManager::loadEvents();
+
+    // Create historical city logs.
+    vector<string> cityLogs =
+        {
+            "Power consumption increased during peak hours.",
+            "Traffic congestion detected in Sector 4.",
+            "Weather alert received from monitoring station.",
+            "Security system detected unusual network activity."};
+
+    // Save the logs.
+    FileManager::saveCityLogs(cityLogs);
+
+    // Load the logs back.
+    vector<string> loadedLogs =
+        FileManager::loadCityLogs();
+
+    // Save NeoVerse configuration.
+    FileManager::saveConfig(
+        "NeoVerse",
+        1000,
+        "AUTOMATIC");
+
+    // Load and display the configuration.
+    FileManager::loadConfig();
+
+    // Export the historical logs to CSV.
+    FileManager::exportLogsToCSV(loadedLogs);
 
     return 0;
 }
