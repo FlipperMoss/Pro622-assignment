@@ -5,6 +5,10 @@
 #include "Engineer.h"
 #include "CityData.h"
 #include "EventManager.h"
+#include "PowerSystem.h"
+#include "TransportSystem.h"
+#include "HealthSystem.h"
+#include "SecuritySystem.h"
 
 using namespace std;
 
@@ -156,6 +160,73 @@ int main()
     // Displays the number of processed high priority events
     cout << "\nHigh priority events processed: "
          << eventManager.countHighPriorityEvents()
+         << endl;
+
+    // QUESTION 4 - OBJECT-ORIENTED CITY ARCHITECTURE
+
+    cout << "\n======================================" << endl;
+    cout << "       CITY COMPONENT SYSTEM" << endl;
+    cout << "======================================" << endl;
+
+    PowerSystem power(
+        101,
+        "NeoVerse Power System",
+        95.5);
+
+    TransportSystem transport(
+        102,
+        "NeoVerse Transport System",
+        75);
+
+    HealthSystem health(
+        103,
+        "NeoVerse Health System",
+        8);
+
+    SecuritySystem security(
+        104,
+        "NeoVerse Security System",
+        2);
+
+    power.activate();
+    transport.activate();
+    health.activate();
+    security.activate();
+
+    cout << "\nComponent Status:" << endl;
+
+    cout << "Power: "
+         << power.getStatus() << endl;
+
+    cout << "Transport: "
+         << transport.getStatus() << endl;
+
+    cout << "Health: "
+         << health.getStatus() << endl;
+
+    cout << "Security: "
+         << security.getStatus() << endl;
+
+    CityComponent *components[4] =
+        {
+            &power,
+            &transport,
+            &health,
+            &security};
+
+    cout << "\n--- Processing City Events ---" << endl;
+
+    for (int i = 0; i < 4; i++)
+    {
+        components[i]->processEvent();
+
+        cout << endl;
+    }
+
+    security.deactivate();
+
+    cout << "Security status: "
+         << security.getStatus()
          << endl;
 
     return 0;
