@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Engineer.h"
 #include "CityData.h"
+#include "EventManager.h"
 
 using namespace std;
 
@@ -103,6 +104,59 @@ int main()
     cityData.removeOldestLog();
 
     cityData.displayHistoricalLogs();
+
+    // Question 3
+
+    EventManager eventManager;
+
+    cout << "\n================================" << endl;
+    cout << "\n==================================" << endl;
+    cout << "===============================" << endl;
+
+    // 3.1
+
+    // Events are added this order
+    eventManager.addEvent(
+        Event("Traffic accident", "Section 1", 3));
+
+    eventManager.addEvent(
+        Event("Power Failure", "Section 3", 5));
+
+    eventManager.addEvent(
+        Event("Weather Alert", "Section 2", 4));
+
+    // Display events in the order they are waiting
+    eventManager.displayEvents();
+
+    // Process the first event that arrived
+    eventManager.processNextEvent();
+
+    eventManager.processNextEvent();
+
+    // 3.2
+
+    // Emergencies are added to the stack
+    eventManager.addEmergency(
+        EmergencyEvent("Major Power Failure", "Sector 7"));
+
+    eventManager.addEmergency(
+        EmergencyEvent("City Network Attack", "Sector 2"));
+
+    eventManager.addEmergency(
+        EmergencyEvent("Severe Weather", "Sector 4"));
+
+    // Display events
+    eventManager.displayEmergencies();
+
+    eventManager.processEmergency();
+    eventManager.processEmergency();
+
+    // STL Algorithm
+
+    // Displays the number of processed high priority events
+    cout << "\nHigh priority events processed: "
+         << eventManager.countHighPriorityEvents()
+         << endl;
 
     return 0;
 }
